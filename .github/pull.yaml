@@ -1,0 +1,18 @@
+version: "1"
+rules:
+  - base: main
+    upstream: mlec1/docker-machine-driver-exo2:main    # the owner of upstream repo
+    mergeMethod: rebase
+    mergeUnstable: false
+    assignees: # Optional
+      - berishaerblin
+      - mlec1
+      - red667
+    reviewers: # Optional
+      - berishaerblin
+      - mlec1
+      - red667
+    conflictReviewers: # Optional, on merge conflict assign a reviewer
+      - berishaerblin
+      - mlec1
+      - red667
