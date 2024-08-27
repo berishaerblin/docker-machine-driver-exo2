@@ -15,6 +15,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            console.log("We are at the script.");
             const { data: prs } = await github.rest.pulls.list({
               owner: 'mlec1',
               repo: 'docker-machine-driver-exo2',
@@ -22,7 +23,9 @@ jobs:
               base: 'main',
               state: 'open',
             });
+            console.log("We end the script.");
             if (prs.length > 0) {
+            console.log("inside if");
               return prs[0].html_url; // Return the URL of the existing PR
             }
             return ''; // No open PR found
