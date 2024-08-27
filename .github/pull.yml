@@ -1,11 +1,12 @@
 version: "1"
 rules:
-  - base: update-from-upstream
+#  - base: update-from-upstream
+  - base: main
     upstream: mlec1/docker-machine-driver-exo2:main    # the owner of upstream repo
     mergeMethod: rebase
     mergeUnstable: false
-  - base: update-from-upstream
-    upstream: main
+#  - base: update-from-upstream
+#    upstream: main
     assignees: # Optional
       - berishaerblin
       - mlec1
@@ -18,3 +19,5 @@ rules:
       - berishaerblin
       - mlec1
       - red667
+label: ":arrow_heading_down: pull"  # Optional
+conflictLabel: "merge-conflict"     # Optional, on merge conflict assign a custom label, Default: merge-conflict
