@@ -7,11 +7,29 @@ on:
 
 jobs:
   sync:
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: tgymnich/fork-sync@v2.0.10
+      - name: Check for existing PR
+        id: check_pr
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prs = await github.pulls.list({
+              owner: 'mlec1',
+              repo: 'docker-machine-driver-exo2',
+              head: 'mlec1:main',
+              base: 'main',
+              state: 'open',
+            });
+            if (prs.data.length > 0) {
+              return prs.data[0].url; // If a PR exists, return the URL
+            }
+            return ''; // If no PR exists, return an empty string
+          result-encoding: string
+
+      - name: feat(sync-fork)
+        if: steps.check_pr.outputs.result == '' # Only run if no PR exists
+        uses: tgymnich/fork-sync@v2.0.10
         with:
           owner: mlec1
           repo: docker-machine-driver-exo2
