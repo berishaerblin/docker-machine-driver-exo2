@@ -18,3 +18,4 @@ jobs:
           base: main
           head: main
           merge_method: rebase
+          auto_approve: false
