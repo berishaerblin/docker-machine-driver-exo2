@@ -24,6 +24,7 @@ jobs:
               state: 'open',
             });
             console.log("We end the script.");
+            console.log(prs.length);
             if (prs.length > 0) {
             console.log("inside if");
               return prs[0].html_url; // Return the URL of the existing PR
