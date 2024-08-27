@@ -8,23 +8,25 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
       - name: Check for existing PR
         id: check_pr
         uses: actions/github-script@v6
         with:
           script: |
-            const prs = await github.pulls.list({
+            const { data: prs } = await github.rest.pulls.list({
               owner: 'mlec1',
               repo: 'docker-machine-driver-exo2',
               head: 'mlec1:main',
               base: 'main',
               state: 'open',
             });
-            if (prs.data.length > 0) {
-              return prs.data[0].url; // If a PR exists, return the URL
+            if (prs.length > 0) {
+              return prs[0].html_url; // Return the URL of the existing PR
             }
-            return ''; // If no PR exists, return an empty string
+            return ''; // No open PR found
+
           result-encoding: string
 
       - name: feat(sync-fork)
@@ -37,3 +39,7 @@ jobs:
           head: main
           auto_merge: false
           merge_method: rebase
+
+      - name: Skip if PR exists
+        if: steps.check_pr.outputs.result != ''
+        run: echo "PR already exists, skipping sync."
