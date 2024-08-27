@@ -17,6 +17,5 @@ jobs:
           repo: docker-machine-driver-exo2
           base: main
           head: main
-          token: ${{ secrets.PERSONAL_TOKEN }}
           merge_method: rebase
-          auto_approve: true
+          auto_merge: false
