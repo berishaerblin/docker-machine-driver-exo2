@@ -18,3 +18,4 @@ jobs:
           base: main
           head: main
           auto_merge: false
+          merge_method: rebase
