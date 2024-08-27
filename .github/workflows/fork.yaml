@@ -15,7 +15,6 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            echo "We are here"
             const { data: prs } = await github.rest.pulls.list({
               owner: 'mlec1',
               repo: 'docker-machine-driver-exo2',
