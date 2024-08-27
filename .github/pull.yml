@@ -1,7 +1,7 @@
 version: "1"
 rules:
   - base: update-from-upstream
-    upstream: mlec1/docker-machine-driver-exo2:main    # the owner of upstream repo
+    upstream: mlec1:main    # the owner of upstream repo
     mergeMethod: rebase
     mergeUnstable: false
   - base: update-from-upstream
