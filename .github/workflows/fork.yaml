@@ -22,10 +22,7 @@ jobs:
               base: 'main',
               state: 'open',
             });
-            console.log("We end the script.");
-            console.log(prs.length);
             if (prs.length > 0) {
-            console.log("inside if");
               return prs[0].html_url; // Return the URL of the existing PR
             }
             return ''; // No open PR found
@@ -42,6 +39,7 @@ jobs:
           head: main
           auto_merge: false
           merge_method: rebase
+          pr_title: "feat: Update from origin"
 
       - name: Skip if PR exists
         if: steps.check_pr.outputs.result != ''
